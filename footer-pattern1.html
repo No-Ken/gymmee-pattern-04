@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>フッターパターン1 - シンプル固定</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        .phone-container {
+            width: 430px;
+            height: 932px;
+            margin: 20px auto;
+            background: #1a1a1a;
+            border-radius: 47px;
+            padding: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .app-wrapper {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            border-radius: 35px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .app-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            color: white;
+        }
+        
+        .app-content {
+            height: 100%;
+            padding: 80px 0 84px 0;
+            overflow-y: auto;
+            color: white;
+        }
+        
+        .content-inner {
+            padding: 20px;
+        }
+        
+        /* フッター - パターン1 */
+        .app-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 84px;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 100%;
+            padding: 0 20px;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .nav-item.active {
+            color: #ff6b35;
+        }
+        
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+            background: currentColor;
+            border-radius: 4px;
+        }
+        
+        .nav-label {
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-container">
+        <div class="app-wrapper">
+            <div class="app-header">
+                <h1>Gymmee - パターン1</h1>
+            </div>
+            
+            <div class="app-content">
+                <div class="content-inner">
+                    <h2>シンプルな固定フッター</h2>
+                    <p>このパターンは最もシンプルな実装です。</p>
+                    <br>
+                    <h3>特徴：</h3>
+                    <ul>
+                        <li>position: absolute でコンテナの下部に固定</li>
+                        <li>z-index: 100 で他の要素より前面に表示</li>
+                        <li>backdrop-filter でガラス効果</li>
+                        <li>コンテンツエリアにpadding-bottomでスペース確保</li>
+                    </ul>
+                    <br>
+                    <p>スクロールしてもフッターは固定されています。</p>
+                    <br><br><br><br><br><br><br><br><br><br>
+                    <p>ここまでスクロールできます。</p>
+                </div>
+            </div>
+            
+            <div class="app-footer">
+                <div class="nav-container">
+                    <div class="nav-item active">
+                        <div class="nav-icon"></div>
+                        <span class="nav-label">ホーム</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span class="nav-label">探索</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span class="nav-label">トレーニング</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span class="nav-label">栄養</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span class="nav-label">プロフィール</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

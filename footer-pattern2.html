@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>フッターパターン2 - Flexboxレイアウト</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        .phone-container {
+            width: 430px;
+            height: 932px;
+            margin: 20px auto;
+            background: #1a1a1a;
+            border-radius: 47px;
+            padding: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .app-wrapper {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            border-radius: 35px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .app-header {
+            height: 80px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .app-content {
+            flex: 1;
+            overflow-y: auto;
+            color: white;
+        }
+        
+        .content-inner {
+            padding: 20px;
+        }
+        
+        /* フッター - パターン2 */
+        .app-footer {
+            height: 84px;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            flex-shrink: 0;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 100%;
+            padding: 0 20px;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 8px;
+        }
+        
+        .nav-item:hover {
+            color: #999;
+            transform: translateY(-2px);
+        }
+        
+        .nav-item.active {
+            color: #ff6b35;
+        }
+        
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+            background: currentColor;
+            border-radius: 4px;
+            position: relative;
+        }
+        
+        .nav-item.active .nav-icon::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            background: #ff6b35;
+            border-radius: 50%;
+        }
+        
+        .nav-label {
+            font-size: 10px;
+            font-weight: 500;
+        }
+        
+        /* FABボタン */
+        .fab {
+            position: absolute;
+            bottom: 100px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            background: #ff6b35;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+            cursor: pointer;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-container">
+        <div class="app-wrapper">
+            <div class="app-header">
+                <h1>Gymmee - パターン2</h1>
+            </div>
+            
+            <div class="app-content">
+                <div class="content-inner">
+                    <h2>Flexboxレイアウト</h2>
+                    <p>このパターンはFlexboxを使用した実装です。</p>
+                    <br>
+                    <h3>特徴：</h3>
+                    <ul>
+                        <li>display: flex で縦方向のレイアウト</li>
+                        <li>ヘッダーとフッターは flex-shrink: 0</li>
+                        <li>コンテンツエリアは flex: 1 で残りの空間を占有</li>
+                        <li>FABボタンも配置可能</li>
+                    </ul>
+                    <br>
+                    <p>この方法はレスポンシブ対応が簡単です。</p>
+                    <br><br><br><br><br><br><br><br><br><br>
+                    <p>スクロール可能なコンテンツ。</p>
+                    <br><br><br><br><br><br><br><br><br><br>
+                    <p>フッターは常に下部に固定されています。</p>
+                </div>
+            </div>
+            
+            <div class="app-footer">
+                <div class="nav-container">
+                    <div class="nav-item active">
+                        <div class="nav-icon"></div>
+                        <span class="nav-label">ホーム</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span class="nav-label">探索</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span class="nav-label">トレーニング</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span class="nav-label">栄養</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span class="nav-label">プロフィール</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="fab">+</div>
+        </div>
+    </div>
+</body>
+</html>

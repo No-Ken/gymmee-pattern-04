@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: system-ui, -apple-system, sans-serif;
+            background: #1a1a1a;
+            color: white;
+        }
+        .test-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .screen {
+            display: none;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .screen.active {
+            display: block;
+        }
+        .nav-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .nav-item {
+            padding: 10px 20px;
+            background: #333;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .nav-item:hover {
+            background: #555;
+        }
+        .nav-item.active {
+            background: #007bff;
+        }
+        .debug-info {
+            background: rgba(0, 255, 0, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Navigation Debug Test</h1>
+        
+        <!-- Navigation -->
+        <div class="nav-container">
+            <button class="nav-item active" data-screen="home">Home</button>
+            <button class="nav-item" data-screen="explore">Explore</button>
+            <button class="nav-item" data-screen="workout">Workout</button>
+            <button class="nav-item" data-screen="nutrition">Nutrition</button>
+            <button class="nav-item" data-screen="profile">Profile</button>
+        </div>
+        
+        <!-- Screens -->
+        <div class="screen active" id="home-screen">
+            <h2>Home Screen</h2>
+            <p>This is the home screen content.</p>
+        </div>
+        
+        <div class="screen" id="explore-screen">
+            <h2>Explore Screen</h2>
+            <p>This is the explore screen content.</p>
+        </div>
+        
+        <div class="screen" id="workout-screen">
+            <h2>Workout Screen</h2>
+            <p>This is the workout screen content.</p>
+        </div>
+        
+        <div class="screen" id="nutrition-screen">
+            <h2>Nutrition Screen</h2>
+            <p>This is the nutrition screen content.</p>
+        </div>
+        
+        <div class="screen" id="profile-screen">
+            <h2>Profile Screen</h2>
+            <p>This is the profile screen content.</p>
+        </div>
+        
+        <!-- Debug Info -->
+        <div class="debug-info" id="debug-output">
+            Debug information will appear here...
+        </div>
+    </div>
+    
+    <script>
+        // Debug logger
+        const debugLog = (message) => {
+            const debugOutput = document.getElementById('debug-output');
+            const timestamp = new Date().toLocaleTimeString();
+            debugOutput.textContent += `[${timestamp}] ${message}\n`;
+            console.log(message);
+        };
+        
+        // Cache elements
+        const elements = {
+            screens: {},
+            navItems: {}
+        };
+        
+        function cacheElements() {
+            debugLog('Starting cacheElements...');
+            
+            // Cache screens
+            document.querySelectorAll('.screen').forEach(screen => {
+                const id = screen.id.replace('-screen', '');
+                elements.screens[id] = screen;
+                debugLog(`Cached screen: ${id} -> ${screen.id}`);
+            });
+            
+            // Cache nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                const screen = item.dataset.screen;
+                if (screen) {
+                    elements.navItems[screen] = item;
+                    debugLog(`Cached nav item: ${screen}`);
+                }
+            });
+            
+            debugLog(`Total screens cached: ${Object.keys(elements.screens).length}`);
+            debugLog(`Total nav items cached: ${Object.keys(elements.navItems).length}`);
+        }
+        
+        function showScreen(screenName) {
+            debugLog(`showScreen called with: ${screenName}`);
+            debugLog(`Available screens: ${Object.keys(elements.screens).join(', ')}`);
+            
+            // Hide all screens
+            Object.values(elements.screens).forEach(screen => {
+                screen.classList.remove('active');
+            });
+            
+            // Show selected screen
+            if (elements.screens[screenName]) {
+                elements.screens[screenName].classList.add('active');
+                debugLog(`✓ Screen shown: ${screenName}`);
+                
+                // Update nav active state
+                document.querySelectorAll('.nav-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                if (elements.navItems[screenName]) {
+                    elements.navItems[screenName].classList.add('active');
+                }
+            } else {
+                debugLog(`✗ Screen not found: ${screenName}`);
+            }
+        }
+        
+        function handleNavClick(e) {
+            const navItem = e.currentTarget;
+            const screen = navItem.dataset.screen;
+            
+            debugLog(`Navigation clicked: ${screen}`);
+            debugLog(`Event target: ${e.target.tagName}, currentTarget: ${e.currentTarget.tagName}`);
+            
+            if (screen) {
+                showScreen(screen);
+            } else {
+                debugLog('No screen data attribute found!');
+            }
+        }
+        
+        function setupEventListeners() {
+            debugLog('Setting up event listeners...');
+            
+            document.querySelectorAll('.nav-item').forEach((item, index) => {
+                item.addEventListener('click', handleNavClick);
+                debugLog(`Event listener added to nav item ${index}: ${item.dataset.screen}`);
+            });
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            debugLog('DOM Content Loaded');
+            cacheElements();
+            setupEventListeners();
+            debugLog('Initialization complete');
+        });
+    </script>
+</body>
+</html>

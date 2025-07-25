@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ナビゲーションテスト</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            background: #000;
+            color: white;
+        }
+        
+        .app-container {
+            display: grid;
+            grid-template-rows: 1fr 84px;
+            height: 100vh;
+        }
+        
+        .screen {
+            display: none;
+            padding: 20px;
+        }
+        
+        .screen.active {
+            display: block;
+        }
+        
+        .footer {
+            background: rgba(20, 20, 20, 0.95);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px;
+        }
+        
+        .nav-item {
+            padding: 10px;
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+        }
+        
+        .nav-item.active {
+            color: #ff6b35;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <main>
+            <div class="screen active" id="home-screen">
+                <h1>ホーム画面</h1>
+                <p>これはホーム画面です</p>
+            </div>
+            
+            <div class="screen" id="explore-screen">
+                <h1>探索画面</h1>
+                <p>これは探索画面です</p>
+            </div>
+            
+            <div class="screen" id="workout-screen">
+                <h1>ワークアウト画面</h1>
+                <p>これはワークアウト画面です</p>
+            </div>
+            
+            <div class="screen" id="nutrition-screen">
+                <h1>栄養画面</h1>
+                <p>これは栄養画面です</p>
+            </div>
+            
+            <div class="screen" id="profile-screen">
+                <h1>プロフィール画面</h1>
+                <p>これはプロフィール画面です</p>
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <button class="nav-item active" data-screen="home">ホーム</button>
+            <button class="nav-item" data-screen="explore">探索</button>
+            <button class="nav-item" data-screen="workout">ワークアウト</button>
+            <button class="nav-item" data-screen="nutrition">栄養</button>
+            <button class="nav-item" data-screen="profile">プロフィール</button>
+        </footer>
+    </div>
+    
+    <script>
+        // 画面を表示
+        function showScreen(screenName) {
+            console.log('Showing screen:', screenName);
+            
+            // すべての画面を非表示
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            
+            // 指定された画面を表示
+            const targetScreen = document.getElementById(screenName + '-screen');
+            if (targetScreen) {
+                targetScreen.classList.add('active');
+                console.log('Screen found and activated:', screenName);
+            } else {
+                console.error('Screen not found:', screenName);
+            }
+        }
+        
+        // ナビゲーションイベントリスナー
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                const screen = e.currentTarget.dataset.screen;
+                console.log('Nav clicked:', screen);
+                
+                // アクティブ状態を更新
+                document.querySelectorAll('.nav-item').forEach(navItem => {
+                    navItem.classList.remove('active');
+                });
+                e.currentTarget.classList.add('active');
+                
+                // 画面を表示
+                showScreen(screen);
+            });
+        });
+        
+        console.log('Test navigation loaded');
+    </script>
+</body>
+</html>

@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Gymmee - オンボーディング（初期設定）">
+    
+    <!-- パターン情報 -->
+    <meta name="pattern" content="iphone-frame-onboarding">
+    <meta name="pattern-number" content="04-onboarding">
+    <meta name="pattern-description" content="iPhone画面を枠組みとした初期設定フロー">
+    
+    <title>Gymmee - はじめての設定</title>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="onboarding-styles.css">
+    
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- iPhone Frame Container -->
+    <div class="iphone-frame">
+        <!-- iPhone Status Bar -->
+        <div class="iphone-status-bar">
+            <div class="status-left">
+                <span class="time">9:41</span>
+            </div>
+            <div class="status-right">
+                <i class="fas fa-signal"></i>
+                <i class="fas fa-wifi"></i>
+                <i class="fas fa-battery-three-quarters"></i>
+            </div>
+        </div>
+        
+        <!-- Dynamic Island -->
+        <div class="dynamic-island"></div>
+        
+        <!-- App Container -->
+        <div class="app-container">
+            <!-- Progress Bar -->
+            <div class="onboarding-progress">
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill" style="width: 11.11%;"></div>
+                </div>
+                <div class="progress-dots">
+                    <div class="progress-dot active"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <main class="onboarding-main">
+                <!-- Step 1: Welcome -->
+                <section class="onboarding-step active" id="step-welcome">
+                    <div class="step-content">
+                        <div class="logo-container">
+                            <div class="logo-icon-large">
+                                <i class="fas fa-dumbbell"></i>
+                            </div>
+                            <h1 class="app-title">Gymmee</h1>
+                            <p class="app-tagline">あなたのAIフィットネスパートナー</p>
+                        </div>
+                        
+                        <div class="welcome-features">
+                            <div class="feature-item">
+                                <i class="fas fa-brain"></i>
+                                <span>AI パーソナルトレーナー</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-chart-line"></i>
+                                <span>進捗トラッキング</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-apple-alt"></i>
+                                <span>栄養管理</span>
+                            </div>
+                        </div>
+
+                        <div class="step-actions">
+                            <button class="btn-primary" onclick="nextStep()">
+                                はじめる
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                            <button class="btn-text" onclick="skipOnboarding()">
+                                すでにアカウントをお持ちの方
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step 2: Basic Info -->
+                <section class="onboarding-step" id="step-basic-info">
+                    <div class="step-header">
+                        <button class="btn-back" onclick="previousStep()">
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                        <h2 class="step-title">基本情報</h2>
+                        <div class="header-spacer"></div>
+                    </div>
+
+                    <div class="step-content">
+                        <p class="step-description">まずは、あなたについて教えてください</p>
+                        
+                        <form class="onboarding-form">
+                            <div class="form-group">
+                                <label>お名前</label>
+                                <input type="text" placeholder="田中 太郎" class="form-input">
+                            </div>
+
+                            <div class="form-group">
+                                <label>ニックネーム</label>
+                                <input type="text" placeholder="タロー" class="form-input">
+                                <small class="form-hint">アプリ内で表示される名前です</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label>生年月日</label>
+                                <input type="date" class="form-input">
+                            </div>
+
+                            <div class="form-group">
+                                <label>性別</label>
+                                <div class="gender-select">
+                                    <button type="button" class="gender-option active">
+                                        <i class="fas fa-mars"></i>
+                                        男性
+                                    </button>
+                                    <button type="button" class="gender-option">
+                                        <i class="fas fa-venus"></i>
+                                        女性
+                                    </button>
+                                    <button type="button" class="gender-option">
+                                        <i class="fas fa-genderless"></i>
+                                        その他
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="step-actions">
+                            <button class="btn-primary" onclick="nextStep()">
+                                次へ
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step 3: Body Info -->
+                <section class="onboarding-step" id="step-body-info">
+                    <div class="step-header">
+                        <button class="btn-back" onclick="previousStep()">
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                        <h2 class="step-title">身体情報</h2>
+                        <div class="header-spacer"></div>
+                    </div>
+
+                    <div class="step-content">
+                        <p class="step-description">正確なトレーニングプランのために</p>
+                        
+                        <form class="onboarding-form">
+                            <div class="form-group">
+                                <label>身長</label>
+                                <div class="input-with-unit">
+                                    <input type="number" placeholder="170" class="form-input">
+                                    <span class="unit">cm</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>体重</label>
+                                <div class="input-with-unit">
+                                    <input type="number" placeholder="65" class="form-input">
+                                    <span class="unit">kg</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>体脂肪率（任意）</label>
+                                <div class="input-with-unit">
+                                    <input type="number" placeholder="20" class="form-input">
+                                    <span class="unit">%</span>
+                                </div>
+                                <small class="form-hint">わからない場合は空欄でOK</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label>活動レベル</label>
+                                <div class="activity-levels">
+                                    <button type="button" class="activity-option">
+                                        <i class="fas fa-couch"></i>
+                                        <span class="activity-name">座りがち</span>
+                                        <small>ほとんど運動しない</small>
+                                    </button>
+                                    <button type="button" class="activity-option active">
+                                        <i class="fas fa-walking"></i>
+                                        <span class="activity-name">軽い活動</span>
+                                        <small>週1-2回の運動</small>
+                                    </button>
+                                    <button type="button" class="activity-option">
+                                        <i class="fas fa-running"></i>
+                                        <span class="activity-name">活発</span>
+                                        <small>週3-5回の運動</small>
+                                    </button>
+                                    <button type="button" class="activity-option">
+                                        <i class="fas fa-dumbbell"></i>
+                                        <span class="activity-name">非常に活発</span>
+                                        <small>ほぼ毎日運動</small>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="step-actions">
+                            <button class="btn-primary" onclick="nextStep()">
+                                次へ
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step 4: Goals -->
+                <section class="onboarding-step" id="step-goals">
+                    <div class="step-header">
+                        <button class="btn-back" onclick="previousStep()">
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                        <h2 class="step-title">目標設定</h2>
+                        <div class="header-spacer"></div>
+                    </div>
+
+                    <div class="step-content">
+                        <p class="step-description">あなたの目標を教えてください</p>
+                        
+                        <div class="goals-grid">
+                            <button type="button" class="goal-card glass-card" onclick="selectGoal('weight-loss')">
+                                <div class="goal-icon">
+                                    <i class="fas fa-weight"></i>
+                                </div>
+                                <h3>減量</h3>
+                                <p>体重と体脂肪を減らす</p>
+                            </button>
+                            <button type="button" class="goal-card glass-card active" onclick="selectGoal('muscle-gain')">
+                                <div class="goal-icon">
+                                    <i class="fas fa-dumbbell"></i>
+                                </div>
+                                <h3>筋肉増強</h3>
+                                <p>筋肉量を増やし強くなる</p>
+                            </button>
+                            <button type="button" class="goal-card glass-card" onclick="selectGoal('health')">
+                                <div class="goal-icon">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <h3>健康維持</h3>
+                                <p>健康的な体を保つ</p>
+                            </button>
+                            <button type="button" class="goal-card glass-card" onclick="selectGoal('endurance')">
+                                <div class="goal-icon">
+                                    <i class="fas fa-running"></i>
+                                </div>
+                                <h3>持久力向上</h3>
+                                <p>スタミナと持久力を高める</p>
+                            </button>
+                        </div>
+
+                        <!-- Goal-specific inputs -->
+                        <div class="goal-details glass-card" id="goal-details">
+                            <h4>具体的な目標を設定</h4>
+                            
+                            <!-- Weight Loss Details -->
+                            <div class="goal-detail-section" id="weight-loss-details" style="display: none;">
+                                <div class="form-group">
+                                    <label>目標体重</label>
+                                    <div class="input-with-unit">
+                                        <input type="number" placeholder="60" class="form-input">
+                                        <span class="unit">kg</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>目標体脂肪率（任意）</label>
+                                    <div class="input-with-unit">
+                                        <input type="number" placeholder="15" class="form-input">
+                                        <span class="unit">%</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Muscle Gain Details -->
+                            <div class="goal-detail-section" id="muscle-gain-details">
+                                <div class="form-group">
+                                    <label>ベンチプレス目標</label>
+                                    <div class="input-with-unit">
+                                        <input type="number" placeholder="80" class="form-input">
+                                        <span class="unit">kg</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>スクワット目標</label>
+                                    <div class="input-with-unit">
+                                        <input type="number" placeholder="100" class="form-input">
+                                        <span class="unit">kg</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>デッドリフト目標</label>
+                                    <div class="input-with-unit">
+                                        <input type="number" placeholder="120" class="form-input">
+                                        <span class="unit">kg</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Endurance Details -->
+                            <div class="goal-detail-section" id="endurance-details" style="display: none;">
+                                <div class="form-group">
+                                    <label>ランニング目標</label>
+                                    <div class="input-with-unit">
+                                        <input type="number" placeholder="10" class="form-input">
+                                        <span class="unit">km</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>目標タイム</label>
+                                    <div class="time-input-group">
+                                        <input type="number" placeholder="45" class="form-input time-input" min="0" max="59">
+                                        <span class="time-separator">:</span>
+                                        <input type="number" placeholder="00" class="form-input time-input" min="0" max="59">
+                                        <span class="unit">分</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Custom Goal -->
+                            <div class="form-group custom-goal-section">
+                                <label>カスタム目標（例：ダンクをする）</label>
+                                <input type="text" placeholder="具体的な目標を入力..." class="form-input">
+                            </div>
+
+                            <!-- Deadline -->
+                            <div class="form-group">
+                                <label>達成期限</label>
+                                <input type="date" class="form-input" min="" id="deadline-input">
+                                <small class="form-hint">いつまでに達成したいですか？</small>
+                            </div>
+                        </div>
+
+                        <div class="secondary-goals">
+                            <h4>サブ目標（複数選択可）</h4>
+                            <div class="checkbox-list">
+                                <label class="checkbox-item">
+                                    <input type="checkbox">
+                                    <span class="checkbox-custom"></span>
+                                    <span>姿勢改善</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox">
+                                    <span class="checkbox-custom"></span>
+                                    <span>柔軟性向上</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox">
+                                    <span class="checkbox-custom"></span>
+                                    <span>ストレス解消</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox">
+                                    <span class="checkbox-custom"></span>
+                                    <span>睡眠改善</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="step-actions">
+                            <button class="btn-primary" onclick="nextStep()">
+                                次へ
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step 5: Exercise Preferences -->
+                <section class="onboarding-step" id="step-preferences">
+                    <div class="step-header">
+                        <button class="btn-back" onclick="previousStep()">
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                        <h2 class="step-title">運動の好み</h2>
+                        <div class="header-spacer"></div>
+                    </div>
+
+                    <div class="step-content">
+                        <p class="step-description">好きな運動タイプを選んでください（複数選択可）</p>
+                        
+                        <div class="exercise-types">
+                            <label class="exercise-type-card glass-card">
+                                <input type="checkbox" name="exercise-type" value="weight-training">
+                                <div class="exercise-type-content">
+                                    <i class="fas fa-dumbbell"></i>
+                                    <span>ウェイトトレーニング</span>
+                                </div>
+                            </label>
+                            <label class="exercise-type-card glass-card">
+                                <input type="checkbox" name="exercise-type" value="cardio">
+                                <div class="exercise-type-content">
+                                    <i class="fas fa-running"></i>
+                                    <span>有酸素運動・ランニング</span>
+                                </div>
+                            </label>
+                            <label class="exercise-type-card glass-card">
+                                <input type="checkbox" name="exercise-type" value="hiit">
+                                <div class="exercise-type-content">
+                                    <i class="fas fa-fire"></i>
+                                    <span>HIIT</span>
+                                </div>
+                            </label>
+                            <label class="exercise-type-card glass-card">
+                                <input type="checkbox" name="exercise-type" value="yoga">
+                                <div class="exercise-type-content">
+                                    <i class="fas fa-spa"></i>
+                                    <span>ヨガ・ストレッチ</span>
+                                </div>
+                            </label>
+                            <label class="exercise-type-card glass-card">
+                                <input type="checkbox" name="exercise-type" value="swimming">
+                                <div class="exercise-type-content">
+                                    <i class="fas fa-swimmer"></i>
+                                    <span>水泳</span>
+                                </div>
+                            </label>
+                            <label class="exercise-type-card glass-card">
+                                <input type="checkbox" name="exercise-type" value="cycling">
+                                <div class="exercise-type-content">
+                                    <i class="fas fa-bicycle"></i>
+                                    <span>サイクリング</span>
+                                </div>
+                            </label>
+                            <label class="exercise-type-card glass-card">
+                                <input type="checkbox" name="exercise-type" value="sports">
+                                <div class="exercise-type-content">
+                                    <i class="fas fa-basketball-ball"></i>
+                                    <span>スポーツ</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="equipment-section">
+                            <h4>利用可能な設備</h4>
+                            <div class="equipment-options">
+                                <button type="button" class="equipment-option glass-card" onclick="selectEquipment('home')">
+                                    <i class="fas fa-home"></i>
+                                    <span>自宅</span>
+                                    <small>基本的な器具のみ</small>
+                                </button>
+                                <button type="button" class="equipment-option glass-card active" onclick="selectEquipment('gym')">
+                                    <i class="fas fa-dumbbell"></i>
+                                    <span>ジム</span>
+                                    <small>フル設備</small>
+                                </button>
+                                <button type="button" class="equipment-option glass-card" onclick="selectEquipment('both')">
+                                    <i class="fas fa-exchange-alt"></i>
+                                    <span>両方</span>
+                                    <small>状況に応じて</small>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="step-actions">
+                            <button class="btn-primary" onclick="nextStep()">
+                                次へ
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step 6: Health Conditions & Limitations -->
+                <section class="onboarding-step" id="step-health">
+                    <div class="step-header">
+                        <button class="btn-back" onclick="previousStep()">
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                        <h2 class="step-title">健康状態の確認</h2>
+                        <div class="header-spacer"></div>
+                    </div>
+
+                    <div class="step-content">
+                        <div class="health-warning glass-card">
+                            <i class="fas fa-exclamation-triangle warning-icon"></i>
+                            <p class="warning-text">安全で効果的なトレーニングプランを作成するため、健康状態について教えてください</p>
+                        </div>
+
+                        <!-- Modern Conditions -->
+                        <div class="health-section glass-card">
+                            <h4><i class="fas fa-desktop"></i> 現代的な健康問題</h4>
+                            <p class="section-description">該当するものにチェックしてください</p>
+                            <div class="condition-grid">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="modern-condition" value="straight-neck">
+                                    <span class="checkbox-custom"></span>
+                                    <span>ストレートネック</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="modern-condition" value="eye-strain">
+                                    <span class="checkbox-custom"></span>
+                                    <span>眼精疲労</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="modern-condition" value="poor-posture">
+                                    <span class="checkbox-custom"></span>
+                                    <span>姿勢不良</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="modern-condition" value="lower-back-pain">
+                                    <span class="checkbox-custom"></span>
+                                    <span>腰痛</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="modern-condition" value="shoulder-stiffness">
+                                    <span class="checkbox-custom"></span>
+                                    <span>肩こり</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="modern-condition" value="knee-pain">
+                                    <span class="checkbox-custom"></span>
+                                    <span>膝痛</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="modern-condition" value="headaches">
+                                    <span class="checkbox-custom"></span>
+                                    <span>頭痛</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="modern-condition" value="carpal-tunnel">
+                                    <span class="checkbox-custom"></span>
+                                    <span>手根管症候群</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="modern-condition" value="sciatica">
+                                    <span class="checkbox-custom"></span>
+                                    <span>坐骨神経痛</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Past Injuries -->
+                        <div class="health-section glass-card">
+                            <h4><i class="fas fa-bone"></i> 過去の怪我</h4>
+                            <p class="section-description">該当する部位にチェックしてください</p>
+                            <div class="injury-checkboxes">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="injury" value="shoulder" onchange="toggleInjuryDetails(this)">
+                                    <span class="checkbox-custom"></span>
+                                    <span>肩</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="injury" value="back" onchange="toggleInjuryDetails(this)">
+                                    <span class="checkbox-custom"></span>
+                                    <span>背中・腰</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="injury" value="knee" onchange="toggleInjuryDetails(this)">
+                                    <span class="checkbox-custom"></span>
+                                    <span>膝</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="injury" value="ankle" onchange="toggleInjuryDetails(this)">
+                                    <span class="checkbox-custom"></span>
+                                    <span>足首</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="injury" value="wrist" onchange="toggleInjuryDetails(this)">
+                                    <span class="checkbox-custom"></span>
+                                    <span>手首</span>
+                                </label>
+                            </div>
+                            <div class="injury-details" id="injury-details" style="display: none;">
+                                <textarea class="form-textarea" placeholder="怪我の詳細を教えてください（いつ、どのように、現在の状態など）"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Medical Conditions -->
+                        <div class="health-section glass-card">
+                            <h4><i class="fas fa-heartbeat"></i> 医学的な疾患</h4>
+                            <p class="section-description">該当するものにチェックしてください</p>
+                            <div class="medical-conditions">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="medical" value="high-blood-pressure">
+                                    <span class="checkbox-custom"></span>
+                                    <span>高血圧</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="medical" value="diabetes">
+                                    <span class="checkbox-custom"></span>
+                                    <span>糖尿病</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="medical" value="heart-condition">
+                                    <span class="checkbox-custom"></span>
+                                    <span>心臓疾患</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="medical" value="asthma">
+                                    <span class="checkbox-custom"></span>
+                                    <span>喘息</span>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label>その他の疾患</label>
+                                <input type="text" placeholder="その他の疾患がある場合は入力してください" class="form-input">
+                            </div>
+                        </div>
+
+                        <!-- Medications -->
+                        <div class="health-section glass-card">
+                            <h4><i class="fas fa-pills"></i> 服用中の薬</h4>
+                            <textarea class="form-textarea" placeholder="定期的に服用している薬があれば教えてください（任意）"></textarea>
+                        </div>
+
+                        <!-- Doctor's Restrictions -->
+                        <div class="health-section glass-card">
+                            <h4><i class="fas fa-user-md"></i> 医師からの運動制限</h4>
+                            <textarea class="form-textarea" placeholder="医師から運動に関する制限や注意事項を受けている場合は教えてください（任意）"></textarea>
+                        </div>
+
+                        <div class="step-actions">
+                            <button class="btn-primary" onclick="nextStep()">
+                                次へ
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step 7: Experience -->
+                <section class="onboarding-step" id="step-experience">
+                    <div class="step-header">
+                        <button class="btn-back" onclick="previousStep()">
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                        <h2 class="step-title">運動経験</h2>
+                        <div class="header-spacer"></div>
+                    </div>
+
+                    <div class="step-content">
+                        <p class="step-description">フィットネス経験を教えてください</p>
+                        
+                        <div class="experience-levels">
+                            <button type="button" class="experience-card glass-card">
+                                <div class="experience-icon beginner">
+                                    <i class="fas fa-seedling"></i>
+                                </div>
+                                <h3>初心者</h3>
+                                <p>運動経験がほとんどない</p>
+                                <ul class="experience-details">
+                                    <li>基礎から丁寧に指導</li>
+                                    <li>怪我のリスクを最小限に</li>
+                                    <li>段階的なプログラム</li>
+                                </ul>
+                            </button>
+                            <button type="button" class="experience-card glass-card active">
+                                <div class="experience-icon intermediate">
+                                    <i class="fas fa-fire"></i>
+                                </div>
+                                <h3>中級者</h3>
+                                <p>定期的に運動している</p>
+                                <ul class="experience-details">
+                                    <li>バランスの良いプログラム</li>
+                                    <li>着実な成長を目指す</li>
+                                    <li>新しいチャレンジ</li>
+                                </ul>
+                            </button>
+                            <button type="button" class="experience-card glass-card">
+                                <div class="experience-icon advanced">
+                                    <i class="fas fa-crown"></i>
+                                </div>
+                                <h3>上級者</h3>
+                                <p>長年の運動経験あり</p>
+                                <ul class="experience-details">
+                                    <li>高強度トレーニング</li>
+                                    <li>専門的なテクニック</li>
+                                    <li>限界への挑戦</li>
+                                </ul>
+                            </button>
+                        </div>
+
+                        <div class="training-focus">
+                            <h4>重点的に改善したい部位</h4>
+                            <p class="section-description">健康状態を考慮して特に強化したい部位があれば選択してください</p>
+                            <div class="body-parts-grid">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="focus-area" value="core">
+                                    <span class="checkbox-custom"></span>
+                                    <span>体幹・腹筋</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="focus-area" value="back">
+                                    <span class="checkbox-custom"></span>
+                                    <span>背中</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="focus-area" value="legs">
+                                    <span class="checkbox-custom"></span>
+                                    <span>脚・臀部</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="focus-area" value="arms">
+                                    <span class="checkbox-custom"></span>
+                                    <span>腕</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="step-actions">
+                            <button class="btn-primary" onclick="nextStep()">
+                                次へ
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step 8: Schedule -->
+                <section class="onboarding-step" id="step-schedule">
+                    <div class="step-header">
+                        <button class="btn-back" onclick="previousStep()">
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                        <h2 class="step-title">トレーニングスケジュール</h2>
+                        <div class="header-spacer"></div>
+                    </div>
+
+                    <div class="step-content">
+                        <p class="step-description">週に何日トレーニングできますか？</p>
+                        
+                        <div class="days-selector">
+                            <div class="days-display">
+                                <span class="days-number" id="days-number">3</span>
+                                <span class="days-text">日/週</span>
+                            </div>
+                            <input type="range" min="1" max="7" value="3" class="days-slider" id="days-slider">
+                            <div class="days-labels">
+                                <span>1</span>
+                                <span>2</span>
+                                <span>3</span>
+                                <span>4</span>
+                                <span>5</span>
+                                <span>6</span>
+                                <span>7</span>
+                            </div>
+                        </div>
+
+                        <div class="preferred-days">
+                            <h4>希望する曜日と時間</h4>
+                            <div class="weekday-schedule">
+                                <div class="weekday-item">
+                                    <label class="weekday-checkbox">
+                                        <input type="checkbox" name="weekday" value="monday">
+                                        <span class="weekday-label">月</span>
+                                    </label>
+                                    <div class="time-slot" style="display: none;">
+                                        <div class="time-inputs">
+                                            <div class="time-input-group">
+                                                <label>開始時間</label>
+                                                <input type="time" class="form-input start-time" step="900" placeholder="時間を選択">
+                                            </div>
+                                            <div class="time-input-group">
+                                                <label>終了時間</label>
+                                                <input type="time" class="form-input end-time" step="900" placeholder="時間を選択">
+                                            </div>
+                                        </div>
+                                        <div class="duration-display">
+                                            <span class="duration-label">所要時間:</span>
+                                            <span class="duration-value">--</span>
+                                        </div>
+                                        
+                                        <!-- Exercise Type Selection -->
+                                        <div class="exercise-types-section">
+                                            <label class="section-label">運動タイプ</label>
+                                            <div class="exercise-types-grid">
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="monday-exercise" value="cardio">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>有酸素運動</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="monday-exercise" value="weight">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>ウェイトトレーニング</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="monday-exercise" value="hiit">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>HIIT</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="monday-exercise" value="yoga">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>ヨガ・ストレッチ</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="monday-exercise" value="recovery">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>リカバリー</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="monday-exercise" value="sports">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>スポーツ</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Intensity Level Selection -->
+                                        <div class="intensity-section">
+                                            <label class="section-label">強度レベル</label>
+                                            <div class="intensity-buttons">
+                                                <label class="intensity-btn">
+                                                    <input type="radio" name="monday-intensity" value="low">
+                                                    <span class="intensity-label">
+                                                        <span class="intensity-title">低強度</span>
+                                                        <span class="intensity-desc">リカバリー重視</span>
+                                                    </span>
+                                                </label>
+                                                <label class="intensity-btn">
+                                                    <input type="radio" name="monday-intensity" value="medium" checked>
+                                                    <span class="intensity-label">
+                                                        <span class="intensity-title">中強度</span>
+                                                        <span class="intensity-desc">バランス型</span>
+                                                    </span>
+                                                </label>
+                                                <label class="intensity-btn">
+                                                    <input type="radio" name="monday-intensity" value="high">
+                                                    <span class="intensity-label">
+                                                        <span class="intensity-title">高強度</span>
+                                                        <span class="intensity-desc">チャレンジ</span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="weekday-item">
+                                    <label class="weekday-checkbox">
+                                        <input type="checkbox" name="weekday" value="tuesday">
+                                        <span class="weekday-label">火</span>
+                                    </label>
+                                    <div class="time-slot" style="display: none;">
+                                        <div class="time-inputs">
+                                            <div class="time-input-group">
+                                                <label>開始時間</label>
+                                                <input type="time" class="form-input start-time" step="900" placeholder="時間を選択">
+                                            </div>
+                                            <div class="time-input-group">
+                                                <label>終了時間</label>
+                                                <input type="time" class="form-input end-time" step="900" placeholder="時間を選択">
+                                            </div>
+                                        </div>
+                                        <div class="duration-display">
+                                            <span class="duration-label">所要時間:</span>
+                                            <span class="duration-value">--</span>
+                                        </div>
+                                        
+                                        <!-- Exercise Type Selection -->
+                                        <div class="exercise-types-section">
+                                            <label class="section-label">運動タイプ</label>
+                                            <div class="exercise-types-grid">
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="tuesday-exercise" value="cardio">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>有酸素運動</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="tuesday-exercise" value="weight">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>ウェイトトレーニング</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="tuesday-exercise" value="hiit">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>HIIT</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="tuesday-exercise" value="yoga">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>ヨガ・ストレッチ</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="tuesday-exercise" value="recovery">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>リカバリー</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="tuesday-exercise" value="sports">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>スポーツ</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Intensity Level Selection -->
+                                        <div class="intensity-section">
+                                            <label class="section-label">強度レベル</label>
+                                            <div class="intensity-buttons">
+                                                <label class="intensity-btn">
+                                                    <input type="radio" name="tuesday-intensity" value="low">
+                                                    <span class="intensity-label">
+                                                        <span class="intensity-title">低強度</span>
+                                                        <span class="intensity-desc">リカバリー重視</span>
+                                                    </span>
+                                                </label>
+                                                <label class="intensity-btn">
+                                                    <input type="radio" name="tuesday-intensity" value="medium" checked>
+                                                    <span class="intensity-label">
+                                                        <span class="intensity-title">中強度</span>
+                                                        <span class="intensity-desc">バランス型</span>
+                                                    </span>
+                                                </label>
+                                                <label class="intensity-btn">
+                                                    <input type="radio" name="tuesday-intensity" value="high">
+                                                    <span class="intensity-label">
+                                                        <span class="intensity-title">高強度</span>
+                                                        <span class="intensity-desc">チャレンジ</span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="weekday-item">
+                                    <label class="weekday-checkbox">
+                                        <input type="checkbox" name="weekday" value="wednesday" checked>
+                                        <span class="weekday-label">水</span>
+                                    </label>
+                                    <div class="time-slot">
+                                        <div class="time-inputs">
+                                            <div class="time-input-group">
+                                                <label>開始時間</label>
+                                                <input type="time" class="form-input start-time" step="900" value="18:00">
+                                            </div>
+                                            <div class="time-input-group">
+                                                <label>終了時間</label>
+                                                <input type="time" class="form-input end-time" step="900" value="19:00">
+                                            </div>
+                                        </div>
+                                        <div class="duration-display">
+                                            <span class="duration-label">所要時間:</span>
+                                            <span class="duration-value">1時間</span>
+                                        </div>
+                                        
+                                        <!-- Exercise Type Selection -->
+                                        <div class="exercise-types-section">
+                                            <label class="section-label">運動タイプ</label>
+                                            <div class="exercise-types-grid">
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="wednesday-exercise" value="cardio">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>有酸素運動</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="wednesday-exercise" value="weight" checked>
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>ウェイトトレーニング</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="wednesday-exercise" value="hiit">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>HIIT</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="wednesday-exercise" value="yoga">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>ヨガ・ストレッチ</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="wednesday-exercise" value="recovery">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>リカバリー</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="wednesday-exercise" value="sports">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>スポーツ</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Intensity Level Selection -->
+                                        <div class="intensity-section">
+                                            <label class="section-label">強度レベル</label>
+                                            <div class="intensity-buttons">
+                                                <label class="intensity-btn">
+                                                    <input type="radio" name="wednesday-intensity" value="low">
+                                                    <span class="intensity-label">
+                                                        <span class="intensity-title">低強度</span>
+                                                        <span class="intensity-desc">リカバリー重視</span>
+                                                    </span>
+                                                </label>
+                                                <label class="intensity-btn">
+                                                    <input type="radio" name="wednesday-intensity" value="medium" checked>
+                                                    <span class="intensity-label">
+                                                        <span class="intensity-title">中強度</span>
+                                                        <span class="intensity-desc">バランス型</span>
+                                                    </span>
+                                                </label>
+                                                <label class="intensity-btn">
+                                                    <input type="radio" name="wednesday-intensity" value="high">
+                                                    <span class="intensity-label">
+                                                        <span class="intensity-title">高強度</span>
+                                                        <span class="intensity-desc">チャレンジ</span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="weekday-item">
+                                    <label class="weekday-checkbox">
+                                        <input type="checkbox" name="weekday" value="thursday">
+                                        <span class="weekday-label">木</span>
+                                    </label>
+                                    <div class="time-slot" style="display: none;">
+                                        <div class="time-inputs">
+                                            <div class="time-input-group">
+                                                <label>開始時間</label>
+                                                <input type="time" class="form-input start-time" step="900" placeholder="時間を選択">
+                                            </div>
+                                            <div class="time-input-group">
+                                                <label>終了時間</label>
+                                                <input type="time" class="form-input end-time" step="900" placeholder="時間を選択">
+                                            </div>
+                                        </div>
+                                        <div class="duration-display">
+                                            <span class="duration-label">所要時間:</span>
+                                            <span class="duration-value">--</span>
+                                        </div>
+                                        
+                                        <!-- Exercise Type Selection -->
+                                        <div class="exercise-types-section">
+                                            <label class="section-label">運動タイプ</label>
+                                            <div class="exercise-types-grid">
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="thursday-exercise" value="cardio">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>有酸素運動</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="thursday-exercise" value="weight">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>ウェイトトレーニング</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="thursday-exercise" value="hiit">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>HIIT</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="thursday-exercise" value="yoga">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>ヨガ・ストレッチ</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="thursday-exercise" value="recovery">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>リカバリー</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="thursday-exercise" value="sports">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>スポーツ</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Intensity Level Selection -->
+                                        <div class="intensity-section">
+                                            <label class="section-label">強度レベル</label>
+                                            <div class="intensity-buttons">
+                                                <label class="intensity-btn">
+                                                    <input type="radio" name="thursday-intensity" value="low">
+                                                    <span class="intensity-label">
+                                                        <span class="intensity-title">低強度</span>
+                                                        <span class="intensity-desc">リカバリー重視</span>
+                                                    </span>
+                                                </label>
+                                                <label class="intensity-btn">
+                                                    <input type="radio" name="thursday-intensity" value="medium" checked>
+                                                    <span class="intensity-label">
+                                                        <span class="intensity-title">中強度</span>
+                                                        <span class="intensity-desc">バランス型</span>
+                                                    </span>
+                                                </label>
+                                                <label class="intensity-btn">
+                                                    <input type="radio" name="thursday-intensity" value="high">
+                                                    <span class="intensity-label">
+                                                        <span class="intensity-title">高強度</span>
+                                                        <span class="intensity-desc">チャレンジ</span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="weekday-item">
+                                    <label class="weekday-checkbox">
+                                        <input type="checkbox" name="weekday" value="friday" checked>
+                                        <span class="weekday-label">金</span>
+                                    </label>
+                                    <div class="time-slot">
+                                        <div class="time-inputs">
+                                            <div class="time-input-group">
+                                                <label>開始時間</label>
+                                                <input type="time" class="form-input start-time" step="900" value="18:00">
+                                            </div>
+                                            <div class="time-input-group">
+                                                <label>終了時間</label>
+                                                <input type="time" class="form-input end-time" step="900" value="19:00">
+                                            </div>
+                                        </div>
+                                        <div class="duration-display">
+                                            <span class="duration-label">所要時間:</span>
+                                            <span class="duration-value">1時間</span>
+                                        </div>
+                                        
+                                        <!-- Exercise Type Selection -->
+                                        <div class="exercise-types-section">
+                                            <label class="section-label">運動タイプ</label>
+                                            <div class="exercise-types-grid">
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="friday-exercise" value="cardio" checked>
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>有酸素運動</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="friday-exercise" value="weight">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>ウェイトトレーニング</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="friday-exercise" value="hiit" checked>
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>HIIT</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="friday-exercise" value="yoga">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>ヨガ・ストレッチ</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="friday-exercise" value="recovery">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>リカバリー</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="friday-exercise" value="sports">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>スポーツ</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Intensity Level Selection -->
+                                        <div class="intensity-section">
+                                            <label class="section-label">強度レベル</label>
+                                            <div class="intensity-buttons">
+                                                <label class="intensity-btn">
+                                                    <input type="radio" name="friday-intensity" value="low">
+                                                    <span class="intensity-label">
+                                                        <span class="intensity-title">低強度</span>
+                                                        <span class="intensity-desc">リカバリー重視</span>
+                                                    </span>
+                                                </label>
+                                                <label class="intensity-btn">
+                                                    <input type="radio" name="friday-intensity" value="medium">
+                                                    <span class="intensity-label">
+                                                        <span class="intensity-title">中強度</span>
+                                                        <span class="intensity-desc">バランス型</span>
+                                                    </span>
+                                                </label>
+                                                <label class="intensity-btn">
+                                                    <input type="radio" name="friday-intensity" value="high" checked>
+                                                    <span class="intensity-label">
+                                                        <span class="intensity-title">高強度</span>
+                                                        <span class="intensity-desc">チャレンジ</span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="weekday-item">
+                                    <label class="weekday-checkbox">
+                                        <input type="checkbox" name="weekday" value="saturday">
+                                        <span class="weekday-label">土</span>
+                                    </label>
+                                    <div class="time-slot" style="display: none;">
+                                        <div class="time-inputs">
+                                            <div class="time-input-group">
+                                                <label>開始時間</label>
+                                                <input type="time" class="form-input start-time" step="900" placeholder="時間を選択">
+                                            </div>
+                                            <div class="time-input-group">
+                                                <label>終了時間</label>
+                                                <input type="time" class="form-input end-time" step="900" placeholder="時間を選択">
+                                            </div>
+                                        </div>
+                                        <div class="duration-display">
+                                            <span class="duration-label">所要時間:</span>
+                                            <span class="duration-value">--</span>
+                                        </div>
+                                        
+                                        <!-- Exercise Type Selection -->
+                                        <div class="exercise-types-section">
+                                            <label class="section-label">運動タイプ</label>
+                                            <div class="exercise-types-grid">
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="saturday-exercise" value="cardio">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>有酸素運動</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="saturday-exercise" value="weight">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>ウェイトトレーニング</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="saturday-exercise" value="hiit">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>HIIT</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="saturday-exercise" value="yoga">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>ヨガ・ストレッチ</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="saturday-exercise" value="recovery">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>リカバリー</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="saturday-exercise" value="sports">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>スポーツ</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Intensity Level Selection -->
+                                        <div class="intensity-section">
+                                            <label class="section-label">強度レベル</label>
+                                            <div class="intensity-buttons">
+                                                <label class="intensity-btn">
+                                                    <input type="radio" name="saturday-intensity" value="low">
+                                                    <span class="intensity-label">
+                                                        <span class="intensity-title">低強度</span>
+                                                        <span class="intensity-desc">リカバリー重視</span>
+                                                    </span>
+                                                </label>
+                                                <label class="intensity-btn">
+                                                    <input type="radio" name="saturday-intensity" value="medium" checked>
+                                                    <span class="intensity-label">
+                                                        <span class="intensity-title">中強度</span>
+                                                        <span class="intensity-desc">バランス型</span>
+                                                    </span>
+                                                </label>
+                                                <label class="intensity-btn">
+                                                    <input type="radio" name="saturday-intensity" value="high">
+                                                    <span class="intensity-label">
+                                                        <span class="intensity-title">高強度</span>
+                                                        <span class="intensity-desc">チャレンジ</span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="weekday-item">
+                                    <label class="weekday-checkbox">
+                                        <input type="checkbox" name="weekday" value="sunday" checked>
+                                        <span class="weekday-label">日</span>
+                                    </label>
+                                    <div class="time-slot">
+                                        <div class="time-inputs">
+                                            <div class="time-input-group">
+                                                <label>開始時間</label>
+                                                <input type="time" class="form-input start-time" step="900" value="09:00">
+                                            </div>
+                                            <div class="time-input-group">
+                                                <label>終了時間</label>
+                                                <input type="time" class="form-input end-time" step="900" value="10:00">
+                                            </div>
+                                        </div>
+                                        <div class="duration-display">
+                                            <span class="duration-label">所要時間:</span>
+                                            <span class="duration-value">1時間</span>
+                                        </div>
+                                        
+                                        <!-- Exercise Type Selection -->
+                                        <div class="exercise-types-section">
+                                            <label class="section-label">運動タイプ</label>
+                                            <div class="exercise-types-grid">
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="sunday-exercise" value="cardio">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>有酸素運動</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="sunday-exercise" value="weight">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>ウェイトトレーニング</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="sunday-exercise" value="hiit">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>HIIT</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="sunday-exercise" value="yoga" checked>
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>ヨガ・ストレッチ</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="sunday-exercise" value="recovery" checked>
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>リカバリー</span>
+                                                </label>
+                                                <label class="exercise-type-checkbox">
+                                                    <input type="checkbox" name="sunday-exercise" value="sports">
+                                                    <span class="checkbox-custom"></span>
+                                                    <span>スポーツ</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Intensity Level Selection -->
+                                        <div class="intensity-section">
+                                            <label class="section-label">強度レベル</label>
+                                            <div class="intensity-buttons">
+                                                <label class="intensity-btn">
+                                                    <input type="radio" name="sunday-intensity" value="low" checked>
+                                                    <span class="intensity-label">
+                                                        <span class="intensity-title">低強度</span>
+                                                        <span class="intensity-desc">リカバリー重視</span>
+                                                    </span>
+                                                </label>
+                                                <label class="intensity-btn">
+                                                    <input type="radio" name="sunday-intensity" value="medium">
+                                                    <span class="intensity-label">
+                                                        <span class="intensity-title">中強度</span>
+                                                        <span class="intensity-desc">バランス型</span>
+                                                    </span>
+                                                </label>
+                                                <label class="intensity-btn">
+                                                    <input type="radio" name="sunday-intensity" value="high">
+                                                    <span class="intensity-label">
+                                                        <span class="intensity-title">高強度</span>
+                                                        <span class="intensity-desc">チャレンジ</span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="workout-duration">
+                            <h4>各日のトレーニング時間</h4>
+                            <div class="duration-per-day">
+                                <p class="duration-note">曜日ごとに異なる時間を設定できます</p>
+                            </div>
+                        </div>
+
+                        <div class="reminder-setup">
+                            <label class="toggle-item">
+                                <span>トレーニングリマインダー</span>
+                                <input type="checkbox" checked>
+                                <span class="toggle-switch"></span>
+                            </label>
+                            <div class="reminder-time">
+                                <label>通知時刻</label>
+                                <input type="time" value="19:00" class="form-input">
+                            </div>
+                        </div>
+
+                        <div class="step-actions">
+                            <button class="btn-primary" onclick="nextStep()">
+                                次へ
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step 9: Setup Complete -->
+                <section class="onboarding-step" id="step-complete">
+                    <div class="step-content complete-content">
+                        <div class="complete-animation">
+                            <div class="success-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="confetti"></div>
+                        </div>
+
+                        <h2 class="complete-title">準備完了！</h2>
+                        <p class="complete-message">あなた専用のトレーニングプランを作成しました</p>
+
+                        <div class="plan-preview glass-card">
+                            <h3>あなたのプラン</h3>
+                            <div class="plan-details">
+                                <div class="plan-item">
+                                    <i class="fas fa-bullseye"></i>
+                                    <span>目標: 筋肉増強</span>
+                                </div>
+                                <div class="plan-item">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>週3回のトレーニング</span>
+                                </div>
+                                <div class="plan-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>1回45分</span>
+                                </div>
+                                <div class="plan-item">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span>中級者向けプログラム</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="premium-offer glass-card">
+                            <div class="offer-badge">限定オファー</div>
+                            <h4>プレミアムプランで更なる成果を</h4>
+                            <ul class="premium-features">
+                                <li><i class="fas fa-check"></i> AIによるリアルタイムフォーム分析</li>
+                                <li><i class="fas fa-check"></i> 詳細な栄養プラン</li>
+                                <li><i class="fas fa-check"></i> 専門家への質問無制限</li>
+                            </ul>
+                            <button class="btn-premium">
+                                7日間無料で試す
+                            </button>
+                        </div>
+
+                        <div class="step-actions">
+                            <button class="btn-primary" onclick="startApp()">
+                                Gymmeeを始める
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                            <button class="btn-text" onclick="startWithoutPremium()">
+                                無料プランで始める
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div> <!-- End of iPhone Frame -->
+
+    <!-- Scripts -->
+    <script src="onboarding.js"></script>
+</body>
+</html>

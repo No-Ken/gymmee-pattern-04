@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Fix Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: system-ui, -apple-system, sans-serif;
+            background: #1a1a1a;
+            color: white;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .test-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .test-section h2 {
+            margin-top: 0;
+            color: #007bff;
+        }
+        .test-results {
+            background: rgba(0, 255, 0, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        .error {
+            background: rgba(255, 0, 0, 0.1);
+            color: #ff6b6b;
+        }
+        .warning {
+            background: rgba(255, 255, 0, 0.1);
+            color: #ffd93d;
+        }
+        .success {
+            background: rgba(0, 255, 0, 0.1);
+            color: #4ecdc4;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Navigation Fix Test for Pattern-04</h1>
+        
+        <div class="test-section">
+            <h2>Test 1: Check DOM Elements</h2>
+            <button onclick="testDOMElements()">Run Test</button>
+            <div id="test1-results" class="test-results">Click the button to run this test...</div>
+        </div>
+        
+        <div class="test-section">
+            <h2>Test 2: Check Event Listeners</h2>
+            <button onclick="testEventListeners()">Run Test</button>
+            <div id="test2-results" class="test-results">Click the button to run this test...</div>
+        </div>
+        
+        <div class="test-section">
+            <h2>Test 3: Test Navigation Functionality</h2>
+            <button onclick="testNavigation()">Run Test</button>
+            <div id="test3-results" class="test-results">Click the button to run this test...</div>
+        </div>
+        
+        <div class="test-section">
+            <h2>Test 4: Check for Conflicts</h2>
+            <button onclick="testConflicts()">Run Test</button>
+            <div id="test4-results" class="test-results">Click the button to run this test...</div>
+        </div>
+        
+        <div class="test-section">
+            <h2>Manual Test Instructions</h2>
+            <ol>
+                <li>Open the main app (index.html) in your browser</li>
+                <li>Open the browser's Developer Console (F12)</li>
+                <li>Type <code>debugNavigation()</code> in the console and press Enter</li>
+                <li>Try clicking each navigation item and observe:
+                    <ul>
+                        <li>Do you see console logs for each click?</li>
+                        <li>Does the screen change?</li>
+                        <li>Does the active state update on the nav items?</li>
+                    </ul>
+                </li>
+                <li>Check for any error messages in the console</li>
+            </ol>
+        </div>
+    </div>
+    
+    <script>
+        function testDOMElements() {
+            const results = document.getElementById('test1-results');
+            let output = '';
+            
+            try {
+                // Check for nav items
+                const navItems = parent.document.querySelectorAll('.nav-item');
+                output += `✓ Found ${navItems.length} navigation items\n`;
+                
+                navItems.forEach((item, index) => {
+                    const screen = item.dataset.screen;
+                    if (screen) {
+                        output += `  - Nav item ${index}: ${screen}\n`;
+                    } else {
+                        output += `  ✗ Nav item ${index}: Missing data-screen attribute\n`;
+                    }
+                });
+                
+                // Check for screens
+                const screens = parent.document.querySelectorAll('.screen');
+                output += `\n✓ Found ${screens.length} screens\n`;
+                
+                screens.forEach((screen) => {
+                    output += `  - ${screen.id}\n`;
+                });
+                
+                results.textContent = output;
+                results.className = 'test-results success';
+            } catch (error) {
+                results.textContent = `Error: ${error.message}\nNote: This test needs to be run within the main app iframe or directly on the main page.`;
+                results.className = 'test-results error';
+            }
+        }
+        
+        function testEventListeners() {
+            const results = document.getElementById('test2-results');
+            let output = '';
+            
+            try {
+                // Check if elements object exists
+                if (parent.window.elements) {
+                    output += '✓ Elements object exists\n';
+                    output += `  - Cached screens: ${Object.keys(parent.window.elements.screens).join(', ')}\n`;
+                    output += `  - Cached nav items: ${Object.keys(parent.window.elements.navItems).join(', ')}\n`;
+                } else {
+                    output += '✗ Elements object not found\n';
+                }
+                
+                // Check if handler functions exist
+                if (parent.window.handleNavClick) {
+                    output += '\n✓ handleNavClick function exists\n';
+                } else {
+                    output += '\n✗ handleNavClick function not found\n';
+                }
+                
+                if (parent.window.showScreen) {
+                    output += '✓ showScreen function exists\n';
+                } else {
+                    output += '✗ showScreen function not found\n';
+                }
+                
+                results.textContent = output;
+                results.className = output.includes('✗') ? 'test-results warning' : 'test-results success';
+            } catch (error) {
+                results.textContent = `Error: ${error.message}\nNote: This test needs to be run within the main app iframe or directly on the main page.`;
+                results.className = 'test-results error';
+            }
+        }
+        
+        function testNavigation() {
+            const results = document.getElementById('test3-results');
+            let output = '';
+            
+            try {
+                // Simulate navigation clicks
+                const navItems = parent.document.querySelectorAll('.nav-item');
+                output += 'Testing navigation clicks...\n\n';
+                
+                navItems.forEach((item, index) => {
+                    const screen = item.dataset.screen;
+                    if (screen && parent.window.showScreen) {
+                        output += `Testing navigation to "${screen}"...\n`;
+                        
+                        // Call showScreen directly
+                        parent.window.showScreen(screen);
+                        
+                        // Check if screen is active
+                        const targetScreen = parent.document.getElementById(`${screen}-screen`);
+                        if (targetScreen && targetScreen.classList.contains('active')) {
+                            output += `  ✓ Screen "${screen}" is now active\n`;
+                        } else {
+                            output += `  ✗ Screen "${screen}" did not activate\n`;
+                        }
+                    }
+                });
+                
+                // Reset to home screen
+                if (parent.window.showScreen) {
+                    parent.window.showScreen('home');
+                    output += '\n✓ Reset to home screen\n';
+                }
+                
+                results.textContent = output;
+                results.className = output.includes('✗') ? 'test-results warning' : 'test-results success';
+            } catch (error) {
+                results.textContent = `Error: ${error.message}\nNote: This test needs to be run within the main app iframe or directly on the main page.`;
+                results.className = 'test-results error';
+            }
+        }
+        
+        function testConflicts() {
+            const results = document.getElementById('test4-results');
+            let output = '';
+            
+            try {
+                // Check for global click handlers
+                const clickHandlers = parent.window.getEventListeners ? parent.window.getEventListeners(parent.document) : null;
+                
+                if (clickHandlers) {
+                    output += 'Checking for global click handlers...\n';
+                    if (clickHandlers.click) {
+                        output += `  ⚠ Found ${clickHandlers.click.length} global click handlers\n`;
+                    }
+                } else {
+                    output += 'Note: Cannot check for event listeners (browser limitation)\n';
+                }
+                
+                // Check z-index issues
+                output += '\nChecking for z-index issues...\n';
+                const navItems = parent.document.querySelectorAll('.nav-item');
+                navItems.forEach((item, index) => {
+                    const zIndex = parent.window.getComputedStyle(item).zIndex;
+                    const pointerEvents = parent.window.getComputedStyle(item).pointerEvents;
+                    
+                    if (pointerEvents === 'none') {
+                        output += `  ✗ Nav item ${index} has pointer-events: none\n`;
+                    }
+                    if (zIndex && parseInt(zIndex) < 0) {
+                        output += `  ⚠ Nav item ${index} has negative z-index: ${zIndex}\n`;
+                    }
+                });
+                
+                // Check for overlapping elements
+                output += '\nChecking for overlapping elements...\n';
+                navItems.forEach((item, index) => {
+                    const rect = item.getBoundingClientRect();
+                    const elementAtPoint = parent.document.elementFromPoint(
+                        rect.left + rect.width/2, 
+                        rect.top + rect.height/2
+                    );
+                    
+                    if (elementAtPoint !== item && !item.contains(elementAtPoint) && !elementAtPoint.contains(item)) {
+                        output += `  ⚠ Nav item ${index} might be blocked by: ${elementAtPoint.tagName}.${elementAtPoint.className}\n`;
+                    }
+                });
+                
+                results.textContent = output || '✓ No conflicts detected';
+                results.className = output.includes('✗') ? 'test-results error' : 
+                                   output.includes('⚠') ? 'test-results warning' : 
+                                   'test-results success';
+            } catch (error) {
+                results.textContent = `Error: ${error.message}\nNote: This test needs to be run within the main app iframe or directly on the main page.`;
+                results.className = 'test-results error';
+            }
+        }
+        
+        // Auto-detect if we're in the main app
+        window.addEventListener('load', () => {
+            if (window.location.pathname.includes('test')) {
+                const container = document.querySelector('.container');
+                const notice = document.createElement('div');
+                notice.className = 'test-section warning';
+                notice.innerHTML = '<h2>Notice</h2><p>For best results, run these tests by opening the browser console on the main app (index.html) and copying the test functions there.</p>';
+                container.insertBefore(notice, container.firstChild);
+            }
+        });
+    </script>
+</body>
+</html>
