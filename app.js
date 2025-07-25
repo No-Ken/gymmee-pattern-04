@@ -212,6 +212,14 @@ function setupEventListeners() {
         });
     });
     
+    // 設定ボタン（栄養ページ内）
+    document.querySelectorAll('.btn-settings[data-screen]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const targetScreen = e.currentTarget.dataset.screen;
+            showScreen(targetScreen);
+        });
+    });
+    
     // FAB（フローティングアクションボタン）
     const fab = document.querySelector('.fab');
     if (fab) {
