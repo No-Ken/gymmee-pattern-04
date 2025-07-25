@@ -59,7 +59,9 @@
                         <span class="streak-count">12</span>
                     </button>
                     <div class="profile-wrapper">
-                        <img src="https://via.placeholder.com/40" alt="プロフィール" class="profile-avatar">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
                         <div class="level-badge">Lv.8</div>
                     </div>
                 </div>
@@ -286,7 +288,7 @@
                         <h3 class="section-title">今日のワークアウト</h3>
                         <div class="today-workout glass-card">
                             <div class="workout-header">
-                                <h3>下半身パワートレーニング</h3>
+                                <h3>下半身パワー</h3>
                                 <span class="workout-tag">推奨</span>
                             </div>
                             <div class="workout-info">
@@ -311,7 +313,7 @@
                                             <i class="fas fa-dumbbell"></i>
                                         </div>
                                         <div class="exercise-info">
-                                            <div class="exercise-name">バーベルスクワット</div>
+                                            <div class="exercise-name">スクワット</div>
                                             <div class="exercise-sets">4セット × 8-10回</div>
                                         </div>
                                     </label>
@@ -323,7 +325,7 @@
                                             <i class="fas fa-dumbbell"></i>
                                         </div>
                                         <div class="exercise-info">
-                                            <div class="exercise-name">ルーマニアンデッドリフト</div>
+                                            <div class="exercise-name">デッドリフト</div>
                                             <div class="exercise-sets">3セット × 12回</div>
                                         </div>
                                     </label>
@@ -806,6 +808,9 @@
                 <div class="nutrition-header">
                     <h2 class="screen-title">栄養管理</h2>
                     <div class="header-actions">
+                        <button class="btn-settings" data-screen="diet-management-settings" title="食事管理設定">
+                            <i class="fas fa-cog"></i>
+                        </button>
                         <button class="date-nav-btn">
                             <i class="fas fa-chevron-left"></i>
                         </button>
@@ -1193,10 +1198,15 @@
                 <!-- Supplement Tab Content -->
                 <div class="tab-content" id="supplement-tab-content">
                     <div class="supplement-schedule">
-                        <h3 class="section-title">
-                            <i class="fas fa-clock"></i>
-                            今日のサプリメントスケジュール
-                        </h3>
+                        <div class="section-header">
+                            <h3 class="section-title">
+                                <i class="fas fa-clock"></i>
+                                今日のサプリメントスケジュール
+                            </h3>
+                            <button class="btn-settings" data-screen="supplement-settings" title="サプリメント設定">
+                                <i class="fas fa-cog"></i>
+                            </button>
+                        </div>
                         <div class="supplement-timeline">
                             <div class="supplement-item glass-card morning">
                                 <div class="supplement-time">
@@ -1320,7 +1330,9 @@
                     </div>
                     <div class="profile-info">
                         <div class="profile-avatar-large">
-                            <img src="https://via.placeholder.com/100" alt="プロフィール">
+                            <div class="avatar-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
                             <button class="avatar-edit">
                                 <i class="fas fa-camera"></i>
                             </button>
@@ -1686,7 +1698,9 @@
                     <!-- Profile Photo Section -->
                     <div class="profile-photo-section glass-card">
                         <div class="photo-preview">
-                            <img src="https://via.placeholder.com/150" alt="プロフィール写真" id="profile-photo-preview">
+                            <div class="photo-icon" id="profile-photo-preview">
+                                <i class="fas fa-user"></i>
+                            </div>
                             <button class="photo-edit-btn" id="photo-upload-btn">
                                 <i class="fas fa-camera"></i>
                             </button>
@@ -4118,8 +4132,122 @@
                         </div>
                     </div>
 
+                    <!-- Subscription Benefits -->
+                    <div class="subscription-benefits glass-card">
+                        <h3>プレミアム会員限定特典</h3>
+                        <div class="benefits-grid">
+                            <div class="benefit-card">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <h4>AIパーソナルトレーナー</h4>
+                                <p>あなただけのカスタマイズされたトレーニングプラン</p>
+                            </div>
+                            <div class="benefit-card">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <h4>詳細な進捗分析</h4>
+                                <p>筋肉量、体脂肪率、パフォーマンスの変化を可視化</p>
+                            </div>
+                            <div class="benefit-card">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-video"></i>
+                                </div>
+                                <h4>プレミアム動画コンテンツ</h4>
+                                <p>500以上のプロによる解説動画にアクセス</p>
+                            </div>
+                            <div class="benefit-card">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <h4>専用コミュニティ</h4>
+                                <p>同じ目標を持つ仲間と交流できる限定グループ</p>
+                            </div>
+                            <div class="benefit-card">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-medal"></i>
+                                </div>
+                                <h4>限定チャレンジ</h4>
+                                <p>プレミアム会員だけの特別なチャレンジに参加</p>
+                            </div>
+                            <div class="benefit-card">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-headset"></i>
+                                </div>
+                                <h4>優先サポート</h4>
+                                <p>24時間以内の返信保証とライブチャットサポート</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Special Offers -->
+                    <div class="special-offers glass-card">
+                        <h3>特別オファー</h3>
+                        <div class="offer-banner">
+                            <div class="offer-icon">
+                                <i class="fas fa-gift"></i>
+                            </div>
+                            <div class="offer-content">
+                                <h4>友達を招待して1ヶ月無料！</h4>
+                                <p>友達がプレミアムプランに加入すると、あなたと友達の両方に1ヶ月無料期間をプレゼント</p>
+                                <button class="invite-btn">
+                                    <i class="fas fa-share-alt"></i>
+                                    招待リンクを共有
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Section -->
+                    <div class="subscription-faq glass-card">
+                        <h3>よくある質問</h3>
+                        <div class="faq-list">
+                            <div class="faq-item">
+                                <button class="faq-question">
+                                    <span>プランの変更はいつでもできますか？</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="faq-answer">
+                                    <p>はい、いつでもプランの変更やキャンセルが可能です。変更は次回の請求日から適用されます。</p>
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <button class="faq-question">
+                                    <span>解約した場合、データは残りますか？</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="faq-answer">
+                                    <p>解約後も基本的なデータは保持されます。再度プレミアムプランに加入すると、以前のデータを引き続き利用できます。</p>
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <button class="faq-question">
+                                    <span>年間プランから月額プランへの変更は可能ですか？</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="faq-answer">
+                                    <p>年間プランの期間終了後に月額プランへ変更できます。期間中の変更をご希望の場合は、サポートまでお問い合わせください。</p>
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <button class="faq-question">
+                                    <span>家族割引はありますか？</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="faq-answer">
+                                    <p>はい、ファミリープランをご用意しています。最大5人まで利用可能で、通常価格の30%オフでご利用いただけます。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Subscription Actions -->
                     <div class="subscription-actions">
+                        <button class="action-btn secondary">
+                            <i class="fas fa-receipt"></i>
+                            請求書をダウンロード
+                        </button>
                         <button class="action-btn pause">
                             <i class="fas fa-pause-circle"></i>
                             一時停止
